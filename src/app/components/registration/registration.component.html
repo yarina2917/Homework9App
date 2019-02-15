@@ -1,0 +1,50 @@
+<div class="container">
+  <h2>Registration</h2>
+  <form  [formGroup]="registerForm" (ngSubmit)="registerUser()">
+    <div class="form-group">
+      <mat-form-field class="full-width">
+        <input matInput type="text" formControlName="name" placeholder="Name" autocomplete="off">
+      </mat-form-field>
+      <mat-error *ngIf="formControls.name.invalid && (formControls.name.dirty || formControls.name.touched)">
+        <mat-error *ngIf="formControls.name.errors.required">Name is required</mat-error>
+      </mat-error>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="full-width">
+        <input matInput type="text" formControlName="surname" placeholder="Surname" autocomplete="off">
+      </mat-form-field>
+      <mat-error *ngIf="formControls.surname.invalid && (formControls.surname.dirty || formControls.surname.touched)">
+        <mat-error *ngIf="formControls.surname.errors.required">Surname is required</mat-error>
+      </mat-error>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="full-width">
+        <input matInput type="email" formControlName="email" placeholder="Email" autocomplete="off">
+      </mat-form-field>
+      <mat-error *ngIf="formControls.email.invalid && (formControls.email.dirty || formControls.email.touched)">
+        <mat-error *ngIf="formControls.email.errors.required">Email is required</mat-error>
+        <mat-error *ngIf="formControls.email.errors.email">Email is not valid</mat-error>
+      </mat-error>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="full-width">
+        <input matInput type="tel" formControlName="phone" placeholder="Phone" autocomplete="off">
+      </mat-form-field>
+      <mat-error *ngIf="formControls.phone.invalid && (formControls.phone.dirty || formControls.phone.touched)">
+        <mat-error *ngIf="formControls.phone.errors.pattern">Phone is not valid</mat-error>
+      </mat-error>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="full-width">
+        <input matInput type="password" formControlName="password" placeholder="Password" autocomplete="off">
+      </mat-form-field>
+      <mat-error *ngIf="formControls.password.invalid && (formControls.password.dirty || formControls.password.touched)">
+        <mat-error *ngIf="formControls.password.errors.required">Password is required</mat-error>
+        <mat-error *ngIf="formControls.password.errors.minlength">Password must be at least 5 characters long</mat-error>
+      </mat-error>
+    </div>
+    <p class="errorRegistration">{{errorRegistration}}</p>
+    <button mat-raised-button type="submit" [disabled]="!registerForm.valid">Submit</button>
+    <a mat-raised-button color="primary" routerLink="/login">Go to login</a>
+  </form>
+</div>

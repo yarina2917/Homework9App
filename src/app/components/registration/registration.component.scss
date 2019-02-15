@@ -1,0 +1,21 @@
+.container {
+  form {
+    min-width: 150px;
+    max-width: 350px;
+    margin: 0 auto;
+    .form-group {
+      margin-bottom: 10px;
+      .full-width {
+        width: 100%;
+      }
+    }
+    .errorRegistration {
+      margin-bottom: 10px;
+      color: darkred;
+    }
+    button {
+      margin-right: 10px;
+      border: 1px solid black;
+    }
+  }
+}

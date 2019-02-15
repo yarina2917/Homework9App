@@ -1,0 +1,9 @@
+<div class="container">
+  <h2>Welcome!</h2>
+  <div class="nav">
+    <a mat-raised-button routerLink="/todo" (click)="isLogged()">My todolist</a>
+    <a mat-raised-button routerLink="/login" color="primary">Login</a>
+    <a mat-raised-button routerLink="/registration" color="primary">Registration</a>
+  </div>
+  <p *ngIf="!isLoggedValue" class="warning">You are not logged in</p>
+</div>

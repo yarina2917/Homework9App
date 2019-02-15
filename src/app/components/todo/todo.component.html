@@ -1,0 +1,60 @@
+<div class="container">
+
+  <div class="nav">
+    <a mat-raised-button color="primary" routerLink="">Home</a>
+    <button mat-raised-button color="primary" (click)="logoutUser()" class="logout">Logout</button>
+  </div>
+
+  <form [formGroup]="todoForm" (submit)="postItem()">
+    <mat-form-field class="titleField">
+      <input matInput type="text" formControlName="title" placeholder="Title" autocomplete="off">
+    </mat-form-field>
+    <mat-form-field class="descriptionField">
+      <input matInput type="text" formControlName="description" placeholder="Description" autocomplete="off">
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Save</button>
+  </form>
+
+  <div class="navTodo">
+    <button mat-raised-button color="primary" (click)="filterList('need')" [class.active] = "filterButton === 'need'">Need to do</button>
+    <button mat-raised-button color="primary" (click)="filterList('done')" [class.active] = "filterButton === 'done'">Done</button>
+    <button mat-raised-button color="primary" (click)="filterList('all')" [class.active] = "filterButton === 'all'">All</button>
+  </div>
+
+  <ul class="todo">
+    <ng-container *ngFor="let item of userList; trackBy: trackById; index as i">
+      <li *ngIf="filter(item.status)">
+        <div class="item" [class.checked] = "item.status === 'done'">
+          <p class="title">{{item.title}}</p>
+          <p class="description">{{item.description}}</p>
+        </div>
+        <div class="picture">
+          <input style="display: none" type="file" accept="image/*" (change)="onFileChanged($event, item._id, i)" #fileInput>
+          <i class="material-icons addIcon" *ngIf="!(item.status === 'done')" (click)="fileInput.click()">add_photo_alternate</i>
+          <i class="material-icons removeIcon" *ngIf="!(item.status === 'done')" (click)="removeImage(item._id, i)">remove_circle_outline</i>
+          <img [src]="item.selected" *ngIf="item.selected" alt="img">
+        </div>
+        <div class="icons">
+          <i class="material-icons doneIcon" *ngIf="item.status === 'need'" (click)="doneItem(item._id, i)">done_outline</i>
+          <i class="material-icons unDoneIcon" *ngIf="item.status === 'done'" (click)="unDone(item._id, i)">restore</i>
+          <i class="material-icons editIcon" *ngIf="item.status === 'need'" (click)="editItem(item, i)">edit</i>
+          <i class="material-icons deleteIcon" (click)="deleteItem(item._id, i)">delete_forever</i>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+
+  <div *ngIf="editItemValue" [class.edit]="editItemValue">
+    <form class="editContainer" (submit)="saveChanges()">
+      <mat-form-field class="editInput">
+        <input matInput type="text" [(ngModel)] = "newTitle" name="title" autocomplete="off">
+      </mat-form-field>
+      <mat-form-field class="editInput">
+        <input matInput type="text" [(ngModel)] = "newDescription" name="description" autocomplete="off">
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Save changes</button>
+      <button mat-raised-button color="warn" (click)="cancelChanges()">Cancel</button>
+    </form>
+  </div>
+
+</div>

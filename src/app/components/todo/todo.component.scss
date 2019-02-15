@@ -1,0 +1,125 @@
+.container {
+  position: relative;
+  .nav {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 5px;
+    border-bottom: 1px solid grey;
+    a {
+      margin-right: 7px;
+    }
+  }
+  form {
+    display: inline-block;
+    margin: 10px 0;
+    .titleField, .descriptionField {
+      margin-right: 10px;
+      min-width: 100px;
+      input {
+        width: 100%;
+      }
+    }
+    .descriptionField {
+      min-width: 300px;
+    }
+  }
+  .navTodo button {
+    margin-right: 5px;
+  }
+  .active {
+    background-color: white;
+    color: darkblue;
+    border: 1px solid darkblue;
+  }
+}
+
+.todo {
+  max-width: 600px;
+  margin: 10px auto;
+  li {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid grey;
+    overflow: hidden;
+    box-sizing: border-box;
+    .item {
+      width: 70%;
+      .title {
+        margin-right: 5px;
+        font-size: 18px;
+        font-weight: bold;
+        color: darkslateblue;
+      }
+      .description {
+        text-align: left;
+        word-wrap: break-word;
+      }
+    }
+    .icons {
+      display: flex;
+      align-self: center;
+      flex-direction: column;
+      .material-icons {
+        margin-bottom: 3px;
+        cursor: pointer;
+      }
+      .doneIcon {
+        color: darkgreen;
+      }
+      .deleteIcon {
+        color: darkred;
+      }
+      .editIcon {
+        color: #2E1D65;
+      }
+      .unDoneIcon {
+        color: darkcyan;
+      }
+    }
+    .picture {
+      width: 20%;
+      margin: 0 5px;
+      img {
+        width: 100%;
+        height: 80px;
+      }
+      .material-icons {
+        cursor: pointer;
+      }
+      .removeIcon {
+        color: darkred;
+        margin-left: 5px;
+      }
+    }
+  }
+}
+
+.edit {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(175, 171, 146, 0.8);
+  .editContainer {
+    min-width: 320px;
+    margin: 10% auto 0;
+    padding: 10px;
+    border: 1px solid grey;
+    background-color: rgb(175, 171, 146);
+    box-sizing: border-box;
+    .editInput {
+      display: block;
+    }
+    button {
+      margin-right: 5px;
+    }
+  }
+}
+
+.checked {
+  text-decoration: line-through;
+}
