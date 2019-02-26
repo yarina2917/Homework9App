@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/index';
 
 export class UserService {
 
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'https://homework9server.herokuapp.com';
 
   constructor(
     private http: HttpClient,
