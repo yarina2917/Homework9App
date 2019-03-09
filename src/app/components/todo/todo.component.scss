@@ -1,15 +1,6 @@
 .container {
   position: relative;
-  .nav {
-    display: flex;
-    justify-content: flex-end;
-    padding-bottom: 5px;
-    border-bottom: 1px solid grey;
-    a {
-      margin-right: 7px;
-    }
-  }
-  form {
+  .addTodoForm {
     display: inline-block;
     margin: 10px 0;
     .titleField, .descriptionField {
@@ -22,36 +13,49 @@
     .descriptionField {
       min-width: 300px;
     }
+    button {
+      color: #222233;
+      background-color: #eae2da;
+      border: 1px solid #222233;
+      font-size: 15px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
   }
   .navTodo button {
     margin-right: 5px;
+    background-color: #d6b98f;
+    color: #222233;
+    border: 1px solid #222233;
+    font-weight: bold;
+    text-transform: uppercase;
   }
-  .active {
-    background-color: white;
-    color: darkblue;
-    border: 1px solid darkblue;
+  .navTodo button.active {
+    background-color: #eae2da;
+    color: #222233;
+    border: 1px solid #222233;
   }
 }
 
 .todo {
   max-width: 600px;
-  margin: 10px auto;
+  margin: 15px auto;
   li {
     display: flex;
     justify-content: space-between;
     width: 100%;
     margin-bottom: 10px;
     padding: 10px;
-    border: 1px solid grey;
     overflow: hidden;
     box-sizing: border-box;
+    box-shadow: 0 0 11px 8px #e5cfb9;
     .item {
       width: 70%;
       .title {
         margin-right: 5px;
         font-size: 18px;
         font-weight: bold;
-        color: darkslateblue;
+        color: #222233;
       }
       .description {
         text-align: left;
@@ -105,7 +109,7 @@
   height: 100%;
   background-color: rgba(175, 171, 146, 0.8);
   .editContainer {
-    min-width: 320px;
+    max-width: 320px;
     margin: 10% auto 0;
     padding: 10px;
     border: 1px solid grey;

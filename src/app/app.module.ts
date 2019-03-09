@@ -13,6 +13,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { HomeComponent } from './components/home/home.component';
 import { TodoComponent } from './components/todo/todo.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { NavComponent } from './components/nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { TodoComponent } from './components/todo/todo.component';
     RegistrationComponent,
     HomeComponent,
     TodoComponent,
+    UserProfileComponent,
+    NavComponent,
   ],
   imports: [
     BrowserModule,

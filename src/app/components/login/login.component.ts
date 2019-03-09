@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { UserService } from '../../services/user.service';
+import { TodoService } from '../../services/todo.service';
 
 @Component({
   selector: 'app-login',
@@ -12,16 +13,16 @@ import { CookieService } from 'ngx-cookie-service';
 export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup = this.fb.group(({
-    name: ['', [Validators.required]],
+    email: ['', [Validators.required]],
     password: ['', [Validators.required]]
   }));
   public errorLog: string;
 
   constructor(
     private fb: FormBuilder,
-    private api: UserService,
-    private router: Router,
+    private api: TodoService,
     private auth: UserService,
+    private router: Router,
     private cookieService: CookieService
   ) {}
 
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   public loginUser(): void {
-    this.api.login(this.loginForm.value).subscribe(
+    this.auth.login(this.loginForm.value).subscribe(
       res => {
         this.cookieService.set( 'token', res['token'] );
         this.router.navigate(['/todo']);

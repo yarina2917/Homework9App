@@ -1,24 +1,21 @@
 <div class="container">
 
-  <div class="nav">
-    <a mat-raised-button color="primary" routerLink="">Home</a>
-    <button mat-raised-button color="primary" (click)="logoutUser()" class="logout">Logout</button>
-  </div>
+  <app-nav></app-nav>
 
-  <form [formGroup]="todoForm" (submit)="postItem()">
+  <form [formGroup]="todoForm" (submit)="postItem()" class="addTodoForm">
     <mat-form-field class="titleField">
       <input matInput type="text" formControlName="title" placeholder="Title" autocomplete="off">
     </mat-form-field>
     <mat-form-field class="descriptionField">
       <input matInput type="text" formControlName="description" placeholder="Description" autocomplete="off">
     </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Save</button>
+    <button mat-raised-button type="submit">Save</button>
   </form>
 
   <div class="navTodo">
-    <button mat-raised-button color="primary" (click)="filterList('need')" [class.active] = "filterButton === 'need'">Need to do</button>
-    <button mat-raised-button color="primary" (click)="filterList('done')" [class.active] = "filterButton === 'done'">Done</button>
-    <button mat-raised-button color="primary" (click)="filterList('all')" [class.active] = "filterButton === 'all'">All</button>
+    <button mat-raised-button (click)="filterList('need')" [class.active] = "filterButton === 'need'">Need to do</button>
+    <button mat-raised-button (click)="filterList('done')" [class.active] = "filterButton === 'done'">Done</button>
+    <button mat-raised-button (click)="filterList('all')" [class.active] = "filterButton === 'all'">All</button>
   </div>
 
   <ul class="todo">

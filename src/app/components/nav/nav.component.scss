@@ -1,0 +1,16 @@
+.nav {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 5px;
+  border-bottom: 1px solid grey;
+  a {
+    margin-left: 15px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #2c2b44;
+    cursor: pointer;
+    &:hover {
+      color: #647289;
+    }
+  }
+}

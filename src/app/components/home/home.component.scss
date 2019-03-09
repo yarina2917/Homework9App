@@ -8,9 +8,12 @@
     a {
       display: inline-block;
       margin: 0 5px;
-    }
-    :first-child {
-      border: 1px solid darkblue;
+      color: #222233;
+      background-color: #e8d6c5;
+      border: 1px solid #222233;
+      font-weight: bold;
+      font-size: 15px;
+      text-transform: uppercase;
     }
   }
   .warning {

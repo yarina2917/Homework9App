@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/user.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TodoItem } from './todoitem';
+import { UserService } from '../../services/user.service';
+import { TodoService } from '../../services/todo.service';
 
 @Component({
   selector: 'app-todo',
@@ -28,6 +29,7 @@ export class TodoComponent implements OnInit {
   });
 
   constructor(
+    private api: TodoService,
     private auth: UserService,
     private fb: FormBuilder
   ) { }
@@ -39,13 +41,9 @@ export class TodoComponent implements OnInit {
   }
 
   public getList(): void {
-    this.auth.get().subscribe((res) => {
+    this.api.get().subscribe((res) => {
       this.userList = res;
     });
-  }
-
-  public logoutUser(): void {
-    this.auth.logout();
   }
 
   public filterList(value: string): void {
@@ -73,21 +71,20 @@ export class TodoComponent implements OnInit {
       status: 'need',
       selected: false
     };
-    this.auth.post(body).subscribe(() => {
-      // use get, because we do not know id in body and can not delete item, which we have just created
-      this.getList();
+    this.api.post(body).subscribe((res) => {
+      this.userList.push(res);
       this.todoForm.reset();
     });
   }
 
   public doneItem(id: string, index: number): void {
-    this.auth.changeToDo({status: 'done'}, id).subscribe(() => {
+    this.api.changeToDo({status: 'done'}, id).subscribe(() => {
       this.userList[index].status = 'done';
     });
   }
 
   public unDone(id: string, index: number): void {
-    this.auth.changeToDo({status: 'need'}, id).subscribe(() => {
+    this.api.changeToDo({status: 'need'}, id).subscribe(() => {
       this.userList[index].status = 'need';
     });
   }
@@ -103,7 +100,7 @@ export class TodoComponent implements OnInit {
   public saveChanges(): void {
     this.editItemValue = false;
     const body = {title: this.newTitle, description: this.newDescription};
-    this.auth.changeToDo(body, this.currentId).subscribe(() => {
+    this.api.changeToDo(body, this.currentId).subscribe(() => {
       this.userList[this.currentIndex].title = this.newTitle;
       this.userList[this.currentIndex].description = this.newDescription;
     });
@@ -114,7 +111,7 @@ export class TodoComponent implements OnInit {
   }
 
   public deleteItem(id: string, index: number): void {
-    this.auth.delete(id).subscribe(() => {
+    this.api.delete(id).subscribe(() => {
       this.userList.splice(index, 1);
     });
   }
@@ -126,7 +123,7 @@ export class TodoComponent implements OnInit {
       reader.readAsDataURL(this.selectedFile);
       reader.addEventListener('load', (event: any) => {
         this.imgUrl = event.target.result;
-        this.auth.changeToDo({selected: this.imgUrl}, id).subscribe(() => {
+        this.api.changeToDo({selected: this.imgUrl}, id).subscribe(() => {
           this.userList[index].selected = this.imgUrl;
         });
       });
@@ -134,7 +131,7 @@ export class TodoComponent implements OnInit {
   }
 
   public removeImage(id: string, index: number): void {
-    this.auth.changeToDo({selected: false}, id).subscribe(() => {
+    this.api.changeToDo({selected: false}, id).subscribe(() => {
       this.userList[index].selected = false;
     });
   }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/user.service';
+import { TodoService } from '../../services/todo.service';
 
 @Component({
   selector: 'app-registration',
@@ -21,9 +22,9 @@ export class RegistrationComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private api: UserService,
+    private api: TodoService,
+    private auth: UserService,
     private router: Router,
-    private auth: UserService
   ) {}
 
   ngOnInit() {
@@ -34,7 +35,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   public registerUser(): void {
-    this.api.register(this.registerForm.value).subscribe(
+    this.auth.register(this.registerForm.value).subscribe(
       (res) => {
         if (this.auth.loggedIn()) {
           this.auth.logout();
