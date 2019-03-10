@@ -7,11 +7,10 @@
         <input matInput type="password" formControlName="password" placeholder="Password" autocomplete="off">
       </mat-form-field>
       <mat-error *ngIf="formControls.password.invalid && (formControls.password.dirty || formControls.password.touched)">
-        <mat-error *ngIf="formControls.password.errors.required">Password is required</mat-error>
         <mat-error *ngIf="formControls.password.errors.minlength">Password must be at least 5 characters long</mat-error>
       </mat-error>
     </div>
-    <p class="errorEdit">{{errorEdit}}</p>
+    <p class="editInfo">{{editInfo}}</p>
     <button mat-raised-button type="submit" [disabled]="!editPasswordForm.valid">Submit</button>
   </form>
 </div>

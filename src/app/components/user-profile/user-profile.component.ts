@@ -10,9 +10,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class UserProfileComponent implements OnInit {
 
   public editPasswordForm: FormGroup = this.fb.group({
-    password: ['', [Validators.required, Validators.minLength(5)]]
+    password: ['', Validators.minLength(5)]
   });
-  public errorEdit: string;
+  public editInfo: string;
 
   constructor(
     private fb: FormBuilder,
@@ -28,14 +28,15 @@ export class UserProfileComponent implements OnInit {
 
   public editUserPassword(): void {
     this.auth.editPassword(this.editPasswordForm.value).subscribe(
-      (res) => {
-        this.errorEdit = 'Password was updated';
+      res => {
+        this.editInfo = 'Password was updated';
+        this.editPasswordForm.reset();
       },
       err => {
         if (err.status === 401) {
-          this.errorEdit = err.error;
+          this.editInfo = err.error;
         } else {
-          this.errorEdit = 'Server Error';
+          this.editInfo = 'Server Error';
         }
       });
   }
