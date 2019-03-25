@@ -20,5 +20,8 @@
       border: 1px solid #222233;
       font-weight: bold;
     }
+    button:disabled {
+      background-color: #ccc;
+    }
   }
 }

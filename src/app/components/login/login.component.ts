@@ -13,7 +13,7 @@ import { TodoService } from '../../services/todo.service';
 export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup = this.fb.group(({
-    email: ['', [Validators.required]],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]]
   }));
   public errorLog: string;
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
   public loginUser(): void {
     this.auth.login(this.loginForm.value).subscribe(
       res => {
-        this.cookieService.set( 'token', res['token'] );
+        this.cookieService.set( 'token', res.userId );
         this.router.navigate(['/todo']);
       },
       err => {

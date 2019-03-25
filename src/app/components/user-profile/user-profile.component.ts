@@ -10,7 +10,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class UserProfileComponent implements OnInit {
 
   public editPasswordForm: FormGroup = this.fb.group({
-    password: ['', Validators.minLength(5)]
+    password: ['', [Validators.minLength(5), Validators.required]]
   });
   public editInfo: string;
 
