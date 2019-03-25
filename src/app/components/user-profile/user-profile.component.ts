@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, FormGroupDirective, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-user-profile',
@@ -26,10 +26,11 @@ export class UserProfileComponent implements OnInit {
     return this.editPasswordForm.controls;
   }
 
-  public editUserPassword(): void {
+  public editUserPassword(formDirective: FormGroupDirective): void {
     this.auth.editPassword(this.editPasswordForm.value).subscribe(
       res => {
         this.editInfo = 'Password was updated';
+        formDirective.resetForm();
         this.editPasswordForm.reset();
       },
       err => {

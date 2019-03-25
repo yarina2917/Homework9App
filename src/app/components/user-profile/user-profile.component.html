@@ -1,7 +1,7 @@
 <div class="container">
   <app-nav></app-nav>
   <h2>You can change your password here:</h2>
-  <form [formGroup]="editPasswordForm" (ngSubmit)="editUserPassword()">
+  <form [formGroup]="editPasswordForm" (ngSubmit)="editUserPassword(formDirective)" #formDirective="ngForm">
     <div class="form-group">
       <mat-form-field class="full-width">
         <input matInput type="password" formControlName="password" placeholder="Password" autocomplete="off">
